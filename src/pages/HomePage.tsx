@@ -5,7 +5,7 @@ import MovieList from '../Components/MovieList';
 import { RootState } from '../store/store';
 import { addToWatchlist } from '../store/watchlistSlice';
 import homepageBackground from '../assets/Homepagebackground.jpg';
-import motifBackground from '../assets/DALL·E 2024-10-08 22.31.24 - A seamless artistic motif of leaf patterns and flowers, some leaves are dying and falling off, while others are blooming. The color palette includes b.webp';
+import motifBackground from '../assets/Floralpatternbackground.webp';
 
 interface Movie {
   id: number;
