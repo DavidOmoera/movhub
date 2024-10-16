@@ -1,7 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+// Define the Movie type with proper fields
+interface Movie {
+  id: number;
+  title: string;
+
+}
 
 interface WatchlistState {
-  watchlist: any[];
+  watchlist: Movie[];
 }
 
 const initialState: WatchlistState = {
@@ -12,11 +19,17 @@ const watchlistSlice = createSlice({
   name: 'watchlist',
   initialState,
   reducers: {
-    addToWatchlist(state, action) {
-      state.watchlist.push(action.payload);
+    // Add a movie to the watchlist, ensure it's not already in the list
+    addToWatchlist: (state, action: PayloadAction<Movie>) => {
+      const existingMovie = state.watchlist.find((movie) => movie.id === action.payload.id);
+      if (!existingMovie) {
+        state.watchlist.push(action.payload); 
+      }
     },
-    removeFromWatchlist(state, action) {
-      state.watchlist = state.watchlist.filter((movie) => movie.id !== action.payload.id);
+
+    // Remove a movie from the watchlist by its ID
+    removeFromWatchlist: (state, action: PayloadAction<number>) => {
+      state.watchlist = state.watchlist.filter((movie) => movie.id !== action.payload);
     },
   },
 });

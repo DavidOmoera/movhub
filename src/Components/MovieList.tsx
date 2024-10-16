@@ -3,14 +3,28 @@ import MovieCard from './MovieCard';
 
 interface MovieListProps {
   movies: any[];
-  onAddToWatchlist: (movie: any) => void;
+  onToggleWatchlist: (movie: any) => void;
+  isInWatchlist: (id: number) => boolean;
 }
 
-const MovieList: React.FC<MovieListProps> = ({ movies, onAddToWatchlist }) => {
+const MovieList: React.FC<MovieListProps> = ({ movies, onToggleWatchlist, isInWatchlist }) => {
   return (
-    <div className="movie-list">
+    <div
+      className="movie-list"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+        gap: '20px',
+        padding: '20px',
+      }}
+    >
       {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} onAddToWatchlist={onAddToWatchlist} />
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onToggleWatchlist={onToggleWatchlist}
+          isInWatchlist={isInWatchlist}
+        />
       ))}
     </div>
   );
